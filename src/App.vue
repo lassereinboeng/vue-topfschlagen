@@ -85,4 +85,14 @@ body
   color: $white
 .pot, .hide
   color: $yellow
+
+// Mobile styles
+@media only screen and (max-width: 768px)
+  .message
+    font-size: 2rem !important
+  .spoon
+    top: -10px !important
+    left: -10px !important
+    width: 70px !important
+    height: 70px !important
 </style>

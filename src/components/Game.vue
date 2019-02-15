@@ -40,6 +40,11 @@ export default {
         // Add Resize Listener
         window.addEventListener('resize', this.initWindow)
 
+        // if window is smaller (mobile), make the target smaller
+        if (window.innerWidth < 768) {
+            this.potSize = 30
+        }
+
         // First Time Window Initiation
         this.initWindow()
     },
