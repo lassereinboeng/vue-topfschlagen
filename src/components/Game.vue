@@ -49,7 +49,7 @@ export default {
         this.initWindow()
     },
     methods: {
-        hit: function () {
+        hit: function (event) {
             // Init Animation Timeline
             let tlSpoon = new TimelineLite()
             let tlMessage = new TimelineLite()
@@ -119,10 +119,10 @@ export default {
 
             console.log("Pot got hid at " + this.potX + " " + this.potY)
         },
-        setSpoonPos: function () {
+        setSpoonPos: function (event) {
             // Spoon Cursor
             let tl = new TimelineLite()
-            tl.to('#spoon', 0.5, {x: event.clientX, y: event.clientY})
+            tl.to('#spoon', 0.15, {x: event.clientX, y: event.clientY})
         },
         getRandomInt: function (min, max) {
             // Helping function for getting random numbers in a specific range
