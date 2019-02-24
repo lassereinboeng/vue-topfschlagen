@@ -22,6 +22,7 @@
 
 <script>
 import { TimelineLite } from 'gsap'
+import { SoundMaker } from './sounds.js'
 export default {
     name: 'game',
     data () {
@@ -34,6 +35,7 @@ export default {
             potSize: 50, // pot size - make it bigger to play easier
             hitX: null, // last hit X coordinate
             hitY: null, // last hit Y coordinate
+            soundMaker: null // Object for playing sounds
         }
     },
     mounted () {
@@ -47,6 +49,9 @@ export default {
 
         // First Time Window Initiation
         this.initWindow()
+
+        // Init SoundMaker
+        this.soundMaker = new SoundMaker()
     },
     methods: {
         hit: function (event) {
@@ -73,6 +78,9 @@ export default {
 
             // Check if actual Hit is hitting the pot
             if (distanceX < this.potSize && distanceY < this.potSize) {
+                // play winning sound
+                this.soundMaker.playYay()
+
                 tlMessage.to('.success', 0.1, {opacity: 1})
                 tlMessage.to('.success', 0.1, {opacity: 0}, '+=2')
                 tlMessage.to('.pot', 0.1, {opacity: 1})
@@ -82,6 +90,9 @@ export default {
                 // Hide pot again
                 this.initPot()
             } else {
+                // play thud sound with 400ms delay
+                this.soundMaker.playThud(400)
+
                 // If wrong, check for colder or hotter
                 if (sumDistance < sumOldDistance) {
                     tlMessage.to('.hotter', 0.1, {opacity: 1})
